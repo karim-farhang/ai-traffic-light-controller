@@ -1,0 +1,122 @@
+import RPi.GPIO as GPIO
+import time
+
+# تنظیمات اولیه GPIO
+GPIO.setmode(GPIO.BCM)
+
+# پین‌های مدل 1
+model_1_red = 20
+model_1_yellow = 21
+model_1_green = 19
+
+# پین‌های مدل 2
+model_2_red = 16
+model_2_yellow = 26
+model_2_green = 13
+
+# پین‌های مدل 3
+model_3_red = 17
+model_3_yellow = 27
+model_3_green = 18
+
+# پین‌های مدل 4
+model_4_red = 6
+model_4_yellow = 5
+model_4_green = 12
+
+# تنظیم پین‌ها به عنوان خروجی
+models = [
+    (model_1_red, model_1_yellow, model_1_green),
+    (model_2_red, model_2_yellow, model_2_green),
+    (model_3_red, model_3_yellow, model_3_green),
+    (model_4_red, model_4_yellow, model_4_green),
+]
+
+for red, yellow, green in models:
+    GPIO.setup(red, GPIO.OUT)
+    GPIO.setup(yellow, GPIO.OUT)
+    GPIO.setup(green, GPIO.OUT)
+
+def light_sequence(red_pin, yellow_pin, green_pin):
+    # روشن کردن چراغ قرمز
+    GPIO.output(red_pin, GPIO.HIGH)
+    time.sleep(1)
+    GPIO.output(red_pin, GPIO.LOW)
+    
+    # روشن کردن چراغ زرد
+    GPIO.output(yellow_pin, GPIO.HIGH)
+    time.sleep(1)
+    GPIO.output(yellow_pin, GPIO.LOW)
+    
+    # روشن کردن چراغ سبز
+    GPIO.output(green_pin, GPIO.HIGH)
+    time.sleep(1)
+    GPIO.output(green_pin, GPIO.LOW)
+
+try:
+    while True:
+        for red, yellow, green in models:
+            light_sequence(red, yellow, green)
+        
+        # پس از اتمام چرخه، همه چراغ‌ها خاموش می‌شوند
+        time.sleep(1)
+        
+except KeyboardInterrupt:
+    pass
+
+# پاک کردن تنظیمات GPIO پس از خروج
+GPIO.cleanup()
+
+
+
+
+
+
+
+
+
+
+
+
+بله، برای اطمینان از درستی شماره‌های پین (GPIO) که در کد و توضیحات قبلی ارائه شده است، آنها را مجدداً بررسی می‌کنم. لطفاً توجه داشته باشید که این شماره‌ها برای Raspberry Pi با **پین‌های GPIO به روش BCM** (Broadcom SOC Channel) تنظیم شده‌اند.
+
+### شماره‌های پین‌های GPIO در Raspberry Pi:
+
+- **مدل 1**:
+  - **سبز**: GPIO 19 (پین شماره 35)
+  - **قرمز**: GPIO 20 (پین شماره 38)
+  - **زرد**: GPIO 21 (پین شماره 40)
+  - **گراند**: GND (پین شماره 39)
+
+- **مدل 2**:
+  - **سبز**: GPIO 13 (پین شماره 33)
+  - **قرمز**: GPIO 16 (پین شماره 36)
+  - **زرد**: GPIO 26 (پین شماره 37)
+  - **گراند**: GND (پین شماره 34)
+
+- **مدل 3**:
+  - **سبز**: GPIO 18 (پین شماره 12)
+  - **قرمز**: GPIO 17 (پین شماره 11)
+  - **زرد**: GPIO 27 (پین شماره 13)
+  - **گراند**: GND (پین شماره 14)
+
+- **مدل 4**:
+  - **سبز**: GPIO 12 (پین شماره 32)
+  - **قرمز**: GPIO 6 (پین شماره 31)
+  - **زرد**: GPIO 5 (پین شماره 29)
+  - **گراند**: GND (پین شماره 30)
+
+این شماره‌ها بر اساس اطلاعاتی که در گفت‌وگوهای قبلی ارائه شد، تنظیم شده‌اند و با توجه به شماره‌گذاری پین‌های GPIO به روش BCM و پین‌های فیزیکی مطابقت دارند.
+
+### خلاصه:
+
+- شماره‌های GPIO و شماره‌های فیزیکی پین‌ها بر اساس روش BCM تنظیم شده‌اند.
+- پین‌های PWM برای کنترل شدت روشنایی چراغ‌های سبز استفاده شده‌اند.
+- پین‌های GND برای هر مدل به نزدیک‌ترین پین GND متصل شده‌اند.
+
+در صورتی که از یک روش شماره‌گذاری دیگر (مثل BOARD) استفاده می‌کنید، باید پین‌های GPIO را متناسب با آن تنظیم کنید. اما اگر از روش BCM استفاده می‌کنید، این شماره‌ها صحیح هستند و می‌توانید از آنها استفاده کنید.
+
+
+
+
+
