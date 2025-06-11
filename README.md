@@ -20,7 +20,7 @@ This project implements a basic **AI-powered traffic light control system** usin
 
 ## 📸 Screenshots
 
-![Sample Image](./Screenshot 2025-06-11 190411.png)  
+![Sample Image](Screenshot.png) 
 *(Optional: Replace with an image showing system in action)*
 
 ## 🛠 Installation & Usage
